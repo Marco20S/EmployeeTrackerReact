@@ -1,5 +1,10 @@
-.App {
+.Ye {
   text-align: center;
+  background-color: antiquewhite;
+  padding: 40px;
+  font-family: Sans-Serif;
+  text-align: center;
+  padding: 10px;
 }
 
 .App-logo {
@@ -25,14 +30,109 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: antiquewhite;
 }
 
 @keyframes App-logo-spin {
-  from {
+  from 
+  {
     transform: rotate(0deg);
   }
-  to {
+  to
+  {
     transform: rotate(360deg);
   }
+}
+
+.name{
+  width:  40%;
+  height: 5px;
+  border-color: cadetblue;
+  padding: 15px;
+  margin-top: 5px;
+  border-bottom: solid;
+
+}
+
+.IDNumber{
+  width:  40%;
+  height: 5px; 
+  border-color: cadetblue;
+  padding: 15px;
+  margin-top: 5px;
+
+}
+
+.mail{
+  width: 40%;
+  height: 5px;
+  border-color: cadetblue;
+  border: solid 5px bottom;
+  padding: 15px;
+  margin-top: 5px;
+
+}
+
+.Eposition{
+  width:  40%;
+  height: 5px;
+  border-color: cadetblue;
+  border: solid;
+  padding: 15px;
+  margin-top: 5px;
+
+}
+
+.phone{
+  width:  40%;
+  height: 5px;
+  border-color: cadetblue;
+  border: solid;
+  padding: 15px;
+  margin-top: 5px;
+
+}
+
+.image{
+  width:  40%;
+  height: 10%;
+  border-color: rgb(222, 236, 236);
+  border: solid;
+  padding: 15px;
+  margin-top: 5px;
+
+
+}
+
+.button{
+  width: 15%;
+  margin-top: 10px;
+
+  margin-left: 3px;
+  margin-right: 3px;
+
+}
+
+.table
+{
+  margin: 2%;
+  width: 60%;
+  height:10px;
+  border-bottom: 1px solid #2e2e26;
+  text-align: left;
+  
+}
+
+th,tr{
+  border-bottom: 1px solid #2c2c29;
+  border-left: #2c2c29;
+  border-right: #2c2c29;
+
+}
+
+.emp
+{
+text-align: left;
+text-overflow: clip;
+
 }
