@@ -1,24 +1,30 @@
 import React from "react"
+import { Button, ModalBody, ModalFooter, ModalHeader, ModalTitle, Modal } from "react-bootstrap";
+
+import EditInfo from "./Employee";
 
 import EmployeeInfo from "./EmployeeInfo";
 
 
+
 export default function DisplayEmployee(props) {
+
+    const [show, setShow] = ("")
+    const handleShow = (e) => setShow(true)
+    const handleClose = (e) => setShow(false)
 
     return (
 
         <>
 
-            <ul>
-                {
+            <ul>{
 
-                    props.employees.map((data) => ((
+                    props.employees.map((data, idnumber) => ((
                         <>
-                         <br/>
-                         <br/>
+                            <br /><br />
 
                             <table className="table">
-                                <thead>
+                               <tbody>
                                     <tr>
                                         <th> Name and Surname</th>
                                         <th> IDNumber</th>
@@ -28,35 +34,44 @@ export default function DisplayEmployee(props) {
                                         <th>Image</th>
                                         <th>Operations</th>
                                     </tr>
-                                </thead>
-
-                                <tbody>
+       
                                     <td>{data.name}</td>
                                     <td>{data.idnumber}</td>
                                     <td>{data.mail}</td>
                                     <td>{data.eposition}</td>
                                     <td>{data.phone}</td>
                                     <td>{data.image}</td>
-                                    <td> 
+                                    <td>
                                         <button onClick={() => props.handleDelete(data.idnumber)} >Delete</button>
                                         <button onClick={() => props.updateEmployee(data)} >Update</button></td>
                                 </tbody>
 
-
                             </table>
 
-                            {/* <h6>{data.name + " " + data.idnumber + " " + data.mail + " " + data.eposition + " " + data.phone + " " + data.image}
+                            <Modal show={show} onHide={handleClose}>
+                                <ModalHeader>
+                                    <ModalTitle>Edit Employee details below</ModalTitle>
 
-                                <button onClick={() => props.handleDelete(data.idnumber)} >Delete</button>
-                                <button onClick={() => props.updateEmployee(data)} >Update</button></h6> */}
+                                </ModalHeader>
+                                <ModalBody>
+
+                                    <EditInfo theEmployee={data}/>
+
+                                </ModalBody>
+                                <ModalFooter>
+
+                                    <Button variant="secondary">Update</Button>
+
+                                </ModalFooter>
+
+                            </Modal>
+
 
                         </>
 
                     )))
 
-                }
-
-            </ul>
+                }</ul>
 
         </>
 

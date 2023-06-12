@@ -26,8 +26,9 @@ export default function EmployeeInfo(props) {
 
 
     const handleDelete = (deleteEmp) => {
-        const newEmployees = props.employees.filter((items) => items !== deleteEmp)
-        props.setEmployees(newEmployees)
+        // const newEmployees = props.employees.filter((items) => items !== deleteEmp.index)
+        const newemp= name.filter((items) => items !== deleteEmp.index)
+        props.setEmployees(newemp)
     }
 
 
@@ -35,8 +36,7 @@ export default function EmployeeInfo(props) {
 
     function addEmployee(e) {
         e.preventDefault();
-        // setEmployee({name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone})
-        // console.log(employee);
+       
         const temp = { name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone };
         props.add(temp);
         console.log('Info.js', props.employees);
@@ -45,6 +45,12 @@ export default function EmployeeInfo(props) {
         //     localStorage.setItem('index', JSON.stringify(index));
         // }, [index]);
         localStorage.setItem('Info.js', index + " " + name +" " + idnumber +" " + mail +" " + eposition +" " + phone)
+        // Array.from(document.querySelectorAll('.employee-form input')).forEach(input => {
+        //     console.log(input.value)
+
+        // })
+        
+        
 
     }
 
@@ -68,7 +74,7 @@ export default function EmployeeInfo(props) {
 
     return (
         <>
-            <form onSubmit={addEmployee}>
+            <form className="employee-form" onSubmit={addEmployee}>
 
                 <h1> Employee App</h1>
 
@@ -76,7 +82,7 @@ export default function EmployeeInfo(props) {
 
                 <label className="NS">Name And Surname</label>
                 <br />
-                <input type="text" className="name" value={name} placeholder="Example: Senzo Meyiwa" name="name"
+                <input type="text" className="name"  placeholder="Example: Senzo Meyiwa" name="name"
                     onChange={(event) => setName(event.target.value)} />
 
                 <br />
@@ -135,7 +141,7 @@ export default function EmployeeInfo(props) {
             {/* // displaying database  */}
 
             <br></br>
-            <br></br>
+          
             <h3 className="emp">Employee list</h3>
 
         </>
