@@ -4,7 +4,9 @@ import { BsSearch } from 'react'
 import './App.css';
 import EmployeeInfo from './components/EmployeeInfo';
 import DisplayEmployee from './components/display';
+import Search from './components/Search';
 import Employeess from './components/EmployeeInfo';
+import EditInfo from './components/Employee';
 
 function App() {
 
@@ -40,9 +42,11 @@ function App() {
 
   const updateEmployee = (idnumber, updatedEmployee) => {
     setEmployees(employees.map((employee) => employee.idnumber === idnumber ?
-      updateEmployee : employee))
+      updatedEmployee : employee))
 
   }
+
+
 
 
 
@@ -52,6 +56,12 @@ function App() {
       <EmployeeInfo add={add} />
 
       {employees && <DisplayEmployee employees={employees} handleDelete={handleDelete} updateEmployee={updateEmployee} />}
+
+
+      {/* <EditInfo/> */}
+      {/* <Search/> */}
+
+
 
     </div>
   );

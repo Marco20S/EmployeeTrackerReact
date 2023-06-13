@@ -9,7 +9,7 @@ let EmpID = 0;
 export default function EmployeeInfo(props) {
 
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState([]);
     const [idnumber, setIdnumber] = useState('');
     const [mail, setMail] = useState('');
     const [eposition, setEposition] = useState('');
@@ -18,16 +18,17 @@ export default function EmployeeInfo(props) {
     // const [employee, setEmployee] = useState({name: '', idnumber: '', mail: '', eposition: "", phone: ""});
     const [index, setIndex] = useState(1)
 
-    const[items, setItems] = useState(props.employees);
+    const [items, setItems] = useState(props.employees);
 
     useEffect(() => {
-        localStorage.setItem('index', JSON.stringify( name +" " + idnumber +" " + mail +" " + eposition +" " + phone));
-    }, [ name +" " + idnumber +" " + mail +" " + eposition +" " + phone]);
+        // if(name.length>0){alert("please enter the folloeing details")}
+        localStorage.setItem('index', JSON.stringify(name + " " + idnumber + " " + mail + " " + eposition + " " + phone));
+    }, [name + " " + idnumber + " " + mail + " " + eposition + " " + phone]);
 
 
     const handleDelete = (deleteEmp) => {
         // const newEmployees = props.employees.filter((items) => items !== deleteEmp.index)
-        const newemp= name.filter((items) => items !== deleteEmp.index)
+        const newemp = name.filter((items) => items !== deleteEmp.index)
         props.setEmployees(newemp)
     }
 
@@ -36,7 +37,8 @@ export default function EmployeeInfo(props) {
 
     function addEmployee(e) {
         e.preventDefault();
-       
+        // if(name.length>0){alert("please enter the folloeing details")}
+
         const temp = { name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone };
         props.add(temp);
         console.log('Info.js', props.employees);
@@ -44,13 +46,13 @@ export default function EmployeeInfo(props) {
         // useEffect(() => {
         //     localStorage.setItem('index', JSON.stringify(index));
         // }, [index]);
-        localStorage.setItem('Info.js', index + " " + name +" " + idnumber +" " + mail +" " + eposition +" " + phone)
+        localStorage.setItem('Info.js', index + " " + name + " " + idnumber + " " + mail + " " + eposition + " " + phone)
         // Array.from(document.querySelectorAll('.employee-form input')).forEach(input => {
         //     console.log(input.value)
+        
+        
 
         // })
-        
-        
 
     }
 
@@ -82,7 +84,7 @@ export default function EmployeeInfo(props) {
 
                 <label className="NS">Name And Surname</label>
                 <br />
-                <input type="text" className="name"  placeholder="Example: Senzo Meyiwa" name="name"
+                <input type="text" className="name" placeholder="Example: Senzo Meyiwa" name="name"
                     onChange={(event) => setName(event.target.value)} />
 
                 <br />
@@ -129,10 +131,6 @@ export default function EmployeeInfo(props) {
 
                     <button type="submit" className="button" >Add Profile</button>
 
-                    {/* <button className="button" >Update Profile</button>
-
-                    <button className="button"  >Delete Profile</button> */}
-
                 </div>
 
             </form>
@@ -141,7 +139,7 @@ export default function EmployeeInfo(props) {
             {/* // displaying database  */}
 
             <br></br>
-          
+
             <h3 className="emp">Employee list</h3>
 
         </>

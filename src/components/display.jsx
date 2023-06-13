@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button, ModalBody, ModalFooter, ModalHeader, ModalTitle, Modal } from "react-bootstrap";
 
 import EditInfo from "./Employee";
@@ -9,10 +9,17 @@ import EmployeeInfo from "./EmployeeInfo";
 
 export default function DisplayEmployee(props) {
 
-    const [show, setShow] = ("")
-    const handleShow = (e) => setShow(true)
-    const handleClose = (e) => setShow(false)
+    
+    //const {updateEmployee} = useState(props.employees)
+    //const updatedEmployee = {name,idnumber,mail, eposition ,phone,image}
 
+    //const id = theEmployee.idnumber;
+
+    const [show, setShow] = useState(false)
+    const handleShow = () => setShow(true)
+    const handleClose = () => setShow(false)
+
+    
     return (
 
         <>
@@ -31,8 +38,8 @@ export default function DisplayEmployee(props) {
                                         <th> Email</th>
                                         <th> Position</th>
                                         <th> Phone Number</th>
-                                        <th>Image</th>
-                                        <th>Operations</th>
+                                        <th> Image</th>
+                                        <th> Operations</th>
                                     </tr>
        
                                     <td>{data.name}</td>
@@ -43,12 +50,12 @@ export default function DisplayEmployee(props) {
                                     <td>{data.image}</td>
                                     <td>
                                         <button onClick={() => props.handleDelete(data.idnumber)} >Delete</button>
-                                        <button onClick={() => props.updateEmployee(data)} >Update</button></td>
+                                        <button onClick={handleShow} >Update</button></td>
                                 </tbody>
 
                             </table>
 
-                            <Modal show={show} onHide={handleClose}>
+                            <Modal show={show} onHide={handleClose} closebuttom>
                                 <ModalHeader>
                                     <ModalTitle>Edit Employee details below</ModalTitle>
 
@@ -60,7 +67,7 @@ export default function DisplayEmployee(props) {
                                 </ModalBody>
                                 <ModalFooter>
 
-                                    <Button variant="secondary">Update</Button>
+                                    <Button variant="secondary" onClick={handleClose}>Close</Button>
 
                                 </ModalFooter>
 
