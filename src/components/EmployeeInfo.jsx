@@ -15,10 +15,13 @@ export default function EmployeeInfo(props) {
     const [eposition, setEposition] = useState('');
     const [phone, setPhone] = useState('');
     const [image, setImage] = useState('');
-    // const [employee, setEmployee] = useState({name: '', idnumber: '', mail: '', eposition: "", phone: ""});
     const [index, setIndex] = useState(1)
 
     const [items, setItems] = useState(props.employees);
+
+    const fileInputRad = useRef<HTMLInputElement>([]);
+    
+
 
     useEffect(() => {
         // if(name.length>0){alert("please enter the folloeing details")}
@@ -33,47 +36,16 @@ export default function EmployeeInfo(props) {
     }
 
 
-
-
     function addEmployee(e) {
         e.preventDefault();
-        // if(name.length>0){alert("please enter the folloeing details")}
-
-        const temp = { name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone };
+        const temp = { name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone, image:image };
         props.add(temp);
         console.log('Info.js', props.employees);
         setIndex(index + 1);
-        // useEffect(() => {
-        //     localStorage.setItem('index', JSON.stringify(index));
-        // }, [index]);
-        localStorage.setItem('Info.js', index + " " + name + " " + idnumber + " " + mail + " " + eposition + " " + phone)
-        // Array.from(document.querySelectorAll('.employee-form input')).forEach(input => {
-        //     console.log(input.value)
-        
-        
-
-        // })
-
+        localStorage.setItem('Info.js', index + " " + name + " " + idnumber + " " + mail + " " + eposition + " " + phone + " "+ image)
     }
 
-    // function ChangInfo(e) {
-    // }
-    // const handleDelete = (data)=>{ 
-    //     alert("You about to delete the following record: " + data);
-    //     setEmployees('')
-    // }
-
-
-    // const deleteEmployee = (deleteEmp) => {
-    //     // alert(EmployeeInfo)
-    //     const newDelete = employee.filter((employee) => employee !== deleteEmp);
-    //     setEmployee(newDelete)
-    // }
-    // const add = (() => {
-    //     props.add(name, idnumber, mail, eposition, phone)
-
-    // })
-
+    
     return (
         <>
             <form className="employee-form" onSubmit={addEmployee}>
@@ -121,8 +93,8 @@ export default function EmployeeInfo(props) {
 
                 <label className="NS">Insert Image</label>
                 <br />
-                <input type="text" value={image} className="image" placeholder="Image URL" name="image"
-                    onChange={(event) => setImage(event.target.value)} />
+                <input type="file" value={image} className="image" placeholder="Image URL" name="image"
+                    onChange={(event) => { console.log(event.target.files); setImage(event.target.value)}} />
 
 
                 <br />

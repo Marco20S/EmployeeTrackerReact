@@ -11,20 +11,29 @@ export default function Search(data) {
 
     const [names, setNames] = useState(employeesDatabase)
     const filterNames = e => {
-        const search = e.target.value()
-        const filteredNames = employeesDatabase.filter(names =>names.idnumber.toLocaleUpperCase().includes(search))
+        console.log(e.target.value)
+        let search = e.target.value
+
+        if(search){
+            const filteredNames = employeesDatabase.filter(names =>names.idnumber.toLocaleUpperCase().includes(search))
+        //setNames(filteredNames)
+        }else{
+            search = document.getElementById("input").value
+            const filteredNames = employeesDatabase.filter(names =>names.idnumber.toLocaleUpperCase().includes(search))
         setNames(filteredNames)
+        }
+        
     }
 
 
     return (
 
         <>
-            <input type="text" placeholder="Enter Employee ID Number" onChange={(e)=> filterNames(e)}/>
-            <button>Search</button>
+            <input type="text" placeholder="Enter Employee ID Number" id="input" onChange={(e)=> filterNames(e)}/>
+            <button onClick={(e)=> filterNames(e)}>Search</button>
 
             <ul>{names.map( name =>{
-                return <li key={name.idnumber}> {names.idnumber}</li>})}
+                return <li key={name.idnumber}> {name.idnumber}</li>})}
                 </ul>
 
         </>

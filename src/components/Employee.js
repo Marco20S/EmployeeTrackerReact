@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useState } from "react"
+import { useState} from "react"
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useReducer } from "react";
@@ -11,7 +11,7 @@ import EmployeeInfo from "./EmployeeInfo";
 
 let EmpID = 0;
 
-export default function EditInfo({theEmployee,employees}) {
+export default function EditInfo({theEmployee,employees, setEmployees}) {
 
 
     const [name, setName] = useState(theEmployee.name)
@@ -21,12 +21,15 @@ export default function EditInfo({theEmployee,employees}) {
     const [phone, setPhone] = useState(theEmployee.phone);
     const [image, setImage] = useState(theEmployee.image);
     const [index, setIndex] = useState(0)
+    const [list, newList] = useState([])
 
     
 
    
-    const {updateEmployee} = useState(employees)
-    const updatedEmployee = {name,idnumber,mail, eposition ,phone,image}
+     const updateEmployee = [...employees]
+    //  const {updateEmployee} = useState(employees)
+
+    let updatedEmployee = {name,idnumber,mail, eposition ,phone,image}
 
     const id = theEmployee.idnumber;
 
@@ -34,32 +37,43 @@ export default function EditInfo({theEmployee,employees}) {
     const handleShow = (e) => setShow(true)
     const handleClose = (e) => setShow(false)
 
-
-
-
-    // useEffect(() => {
-    //     localStorage.setItem('index', JSON.stringify( name +" " + idnumber +" " + mail +" " + eposition +" " + phone));
-    // }, [ name +" " + idnumber +" " + mail +" " + eposition +" " + phone]);
-
-    // function addEmployee(e) {
-    //     e.preventDefault();
-    //     const temp = { name: name, idnumber: idnumber, mail: mail, eposition: eposition, phone: phone };
-    //     props.add(temp);
-    //     console.log('Info.js', props.employees);
-    //     setIndex(index + 1);
-    //     localStorage.setItem('Info.js', index + " " + name +" " + idnumber +" " + mail +" " + eposition +" " + phone)
-
-    // }
+     useEffect(() => { handleClose() },[employees])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        updateEmployee({idnumber,updatedEmployee})
+        console.log(updatedEmployee)
+        setEmployees(employees.map(emp => {
+            return emp.idnumber === updatedEmployee.idnumber ? 
+            {
+                name:updatedEmployee.name,
+                idnumber:updatedEmployee.idnumber,
+                mail:updatedEmployee.mail,
+                eposition:updatedEmployee.eposition,
+                phone:updatedEmployee.phone,
+                image:updatedEmployee.image,
+            }
+            : 
+            emp
+        }))
+
+         updatedEmployee = {name : "",idnumber:"",mail:"", eposition:"" ,phone:"",image:""}
+
+
+        Array.from(document.querySelectorAll('.employee-form input')).forEach(input => {
+      console.log("form input",input.type == 'file')
+      if(input.type !== 'file'){
+        input.value = '';
+      }
+
+    })
+     theEmployee = {}   
     }
+
 
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="employee-form" onSubmit={handleSubmit}>
 
                 <h1> Employee App</h1>
 
@@ -104,8 +118,8 @@ export default function EditInfo({theEmployee,employees}) {
 
                 <label className="NS">Insert Image</label>
                 <br />
-                <input type="text" value={image} className="image" placeholder="Image URL" name="image"
-                    onChange={(e)=> setImage(e.target.value)} />
+                <input type="file" value={image} className="image" placeholder="Image URL" name="image"
+                    onChange={(e)=> { console.log(e.target);setImage(e.target.value)}} />
 
 
                 <br />
