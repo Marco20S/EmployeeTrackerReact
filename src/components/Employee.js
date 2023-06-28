@@ -39,6 +39,7 @@ export default function EditInfo({theEmployee,employees, setEmployees}) {
 
      useEffect(() => { handleClose() },[employees])
 
+     
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(updatedEmployee)
