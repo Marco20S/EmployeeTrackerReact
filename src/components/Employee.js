@@ -39,11 +39,9 @@ export default function EditInfo({theEmployee,employees, setEmployees}) {
 
      useEffect(() => { handleClose() },[employees])
 
-
-     
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(updatedEmployee)
+        console.log("Updated Employee",updatedEmployee)
         setEmployees(employees.map(emp => {
             return emp.idnumber === updatedEmployee.idnumber ? 
             {
@@ -120,7 +118,7 @@ export default function EditInfo({theEmployee,employees, setEmployees}) {
 
                 <label className="NS">Insert Image</label>
                 <br />
-                <input type="file" value={image} className="image" placeholder="Image URL" name="image"
+                <input type="text" value={image} className="image" placeholder="Image URL" name="image"
                     onChange={(e)=> { console.log(e.target);setImage(e.target.value)}} />
 
 
